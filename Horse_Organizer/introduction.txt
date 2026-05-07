@@ -1,0 +1,10 @@
+Project Title: Horse Organizer
+
+By Devon Svoboda
+
+    CS50 Github: code50/209852217
+    Personal Github: me50/dsvoboda101
+
+    San Diego, USA
+
+Recorded on June 23rd, 2025
