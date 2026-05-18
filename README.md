@@ -8,28 +8,6 @@ What differentiates me as a data scientist is my ability to deeply understand th
 
 ## Projects
 
-### 🐴 [Horse Organizer](./Horse_Organizer)
-**Final project for CS50P — Introduction to Python (Harvard University)**
-
-A command-line tool for managing a list of sale horses in the sport of eventing. Users can search available horses by budget, competition level, and age range, add new horses to the roster, or remove sold horses with automatic timestamped backups before any edits.
-
-The project emphasizes robust input handling: budget, age, and level inputs accept a wide range of natural language formats (e.g. "twenty-five thousand dollars", "eight to ten years old") using regex parsing and word-to-number conversion. Search results are ranked into Tier I matches (all criteria met) and Tier II matches (budget plus one other criterion).
-
-**Key tools:** Python, CSV, Regex, w2n
-
----
-
-### 🏥 [Modelling Hospital Length of Stay](./Modelling_Hospital_LoS)
-**Capstone 1 — Springboard Data Science Certification**
-
-Predicting a patient's length of stay (LoS) at the time of admission would allow hospitals to more effectively schedule staffing, bed allocation, and resource planning. This project builds a regression model to predict LoS using vital signs and medical history from a dataset of 100,000 patients.
-
-EDA revealed that most numeric features (hematocrit, creatinine, BMI, pulse, etc.) show a distinctive non-linear relationship with LoSm with extreme values often associated with *shorter* stays.  This pointed toward tree-based models as the right approach. An engineered feature summing total patient complications improved model performance. After screening seven algorithms, CatBoost with default settings outperformed all others, particularly for longer admissions (10+ days), which are the highest priority from a resource-planning perspective. The final model requires only 11 features and predicts stay length with a mean error of ±0.27 days.
-
-**Key tools:** Python, Scikit-learn, CatBoost, XGBoost, Pandas, Matplotlib
-
----
-
 ### 🧬 [Predicting iPSC Differentiation Efficiency](./Prediciting_iPSC_Diff_Efficiency)
 **Capstone 3 — Springboard Data Science Certification**
 
@@ -40,7 +18,26 @@ A core bottleneck in iPSC-based cell therapy development is donor selection. Dif
 **Key tools:** Python, ScanPy, CatBoost, SHAP, Scikit-learn, Pandas
 
 ---
+### 🏥 [Modelling Hospital Length of Stay](./Modelling_Hospital_LoS)
+**Capstone 1 — Springboard Data Science Certification**
 
+Predicting a patient's length of stay (LoS) at the time of admission would allow hospitals to more effectively schedule staffing, bed allocation, and resource planning. This project builds a regression model to predict LoS using vital signs and medical history from a dataset of 100,000 patients.
+
+EDA revealed that most numeric features (hematocrit, creatinine, BMI, pulse, etc.) show a distinctive non-linear relationship with LoSm with extreme values often associated with *shorter* stays.  This pointed toward tree-based models as the right approach. An engineered feature summing total patient complications improved model performance. After screening seven algorithms, CatBoost with default settings outperformed all others, particularly for longer admissions (10+ days), which are the highest priority from a resource-planning perspective. The final model requires only 11 features and predicts stay length with a mean error of ±0.27 days.
+
+**Key tools:** Python, Scikit-learn, CatBoost, XGBoost, Pandas, Matplotlib
+
+---
+### 🐴 [Horse Organizer](./Horse_Organizer)
+**Final project for CS50P — Introduction to Python (Harvard University)**
+
+A command-line tool for managing a list of sale horses in the sport of eventing. Users can search available horses by budget, competition level, and age range, add new horses to the roster, or remove sold horses with automatic timestamped backups before any edits.
+
+The project emphasizes robust input handling: budget, age, and level inputs accept a wide range of natural language formats (e.g. "twenty-five thousand dollars", "eight to ten years old") using regex parsing and word-to-number conversion. Search results are ranked into Tier I matches (all criteria met) and Tier II matches (budget plus one other criterion).
+
+**Key tools:** Python, CSV, Regex, w2n
+
+---
 ## About This Portfolio
 
 These projects represent the range of my data science work to date, from foundational Python development to applied machine learning on real biological datasets. Each project folder contains its own detailed README with methods, results, and code.
