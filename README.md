@@ -1,217 +1,50 @@
-# Predicting iPSC Donor Differentiation Success
+# Devon Svoboda — Data Science Portfolio
 
-## Overview
-Induced pluripotent stem cells (iPSCs) are a powerful platform for developing next-generation cell therapies. However, selecting optimal donor cell lines is expensive, time-consuming, and experimentally limited.
+I'm a Data Scientist with 8+ years of industry and academic experience in cellular biology, gene and cell therapy, and translational biotech R&D. After reaching Principal Scientist level, I made a deliberate pivot into data science by completing an intensive Python-based bootcamp with Springboard and building skills in machine learning, statistical modeling, SQL, and data analysis.
 
-This project demonstrates a **machine learning pipeline** that predicts the differentiation potential of iPSC donors using RNA-seq data. Specifically, the model predicts how effectively donor-derived iPSCs differentiate into **definitive endoderm (DE)** cells.
-
-The goal is to **accelerate donor selection** and reduce experimental burden in early-stage cell therapy development.
+What differentiates me as a data scientist is my ability to deeply understand the science behind the data. I bring strong scientific intuition to problem formulation, model development, and interpretation, enabling more meaningful insights than analytics alone. I’m particularly interested in applied data science and machine learning roles embedded within R&D, platform development, or discovery teams, where data directly shapes scientific strategy and therapeutic development.
 
 ---
 
-## Problem Statement
-Developing iPSC-based therapies faces several bottlenecks:
-- Long differentiation timelines (weeks to months)
-- High experimental costs
-- Limited ability to test large numbers of donors
-- Significant variability between donors
+## Projects
 
-This project addresses one key step:
-> **Can we predict donor differentiation success from baseline (day 0) gene expression?**
+### 🐴 [Horse Organizer](./Horse_Organizer)
+**Final project for CS50P — Introduction to Python (Harvard University)**
 
----
+A command-line tool for managing a list of sale horses in the sport of eventing. Users can search available horses by budget, competition level, and age range, add new horses to the roster, or remove sold horses with automatic timestamped backups before any edits.
 
-## Dataset
-- **Source**: Cuomo et al., *Nature Communications (2020)*  
-- **Data type**: Single-cell RNA-seq (scRNA-seq)  
-- **Donors**: 125 total (92 used after filtering)  
-- **Timepoints**:
-  - Day 0: iPSCs  
-  - Day 1–3: Differentiation into definitive endoderm  
+The project emphasizes robust input handling: budget, age, and level inputs accept a wide range of natural language formats (e.g. "twenty-five thousand dollars", "eight to ten years old") using regex parsing and word-to-number conversion. Search results are ranked into Tier I matches (all criteria met) and Tier II matches (budget plus one other criterion).
 
-- **Access**:  
-  https://zenodo.org/record/3625024
+**Key tools:** Python, CSV, Regex, w2n
 
 ---
 
-## Project Pipeline
+### 🏥 [Modelling Hospital Length of Stay](./Modelling_Hospital_LoS)
+**Capstone 1 — Springboard Data Science Certification**
 
-### 1. Data Processing
-- Converted raw counts into a **ScanPy AnnData (`adata`) object**
-- Structured data into:
-  - `X`: gene expression matrix
-  - `obs`: metadata
+Predicting a patient's length of stay (LoS) at the time of admission would allow hospitals to more effectively schedule staffing, bed allocation, and resource planning. This project builds a regression model to predict LoS using vital signs and medical history from a dataset of 100,000 patients.
 
----
+EDA revealed that most numeric features (hematocrit, creatinine, BMI, pulse, etc.) show a distinctive non-linear relationship with LoSm with extreme values often associated with *shorter* stays.  This pointed toward tree-based models as the right approach. An engineered feature summing total patient complications improved model performance. After screening seven algorithms, CatBoost with default settings outperformed all others, particularly for longer admissions (10+ days), which are the highest priority from a resource-planning perspective. The final model requires only 11 features and predicts stay length with a mean error of ±0.27 days.
 
-### 2. Exploratory Data Analysis
-
-#### Validation
-- Reproduced PCA from original publication
-- Confirmed expected temporal progression (day 0 → day 3) 
-
-<img src="Reports/images/Figure_1_PCA.png" width="700">
-
-#### Differentiation Metrics
-Two independent targets were created:
-
-1. **Pseudorank**
-   - Based on pseudotime (ScanPy `dpt`)
-   - Measures progression along differentiation trajectory  
-<img src="Reports/images/Figure_5_Pseudorank.png" width="400">
-
-2. **DE Score**
-   - Based on expression of curated marker genes
-   - Combines:
-     - 113 DE genes
-     - 37 iPSC genes  
-<img src="Reports/images/Figure_6_DE_score.png" width="800">
+**Key tools:** Python, Scikit-learn, CatBoost, XGBoost, Pandas, Matplotlib
 
 ---
 
-### 3. Feature Engineering
+### 🧬 [Predicting iPSC Differentiation Efficiency](./Prediciting_iPSC_Diff_Efficiency)
+**Capstone 3 — Springboard Data Science Certification**
 
-#### Bulk Conversion
-- Aggregated single-cell data into **donor-level bulk RNA-seq**
-- Reduced noise and enabled donor-level modeling
+Inspired by real challenges encountered at Shoreline Biosciences, this project builds a machine learning pipeline to predict how effectively iPSC donor lines will differentiate into definitive endoderm cells using only baseline (Day 0) RNA-seq gene expression data.
 
-#### Dimension Reduction Approaches
-Tested:
-- PCA (top 10 components)
-- Pathway scores (MSigDB hallmark gene sets)
-- Gene-level selection (top correlated genes)
+A core bottleneck in iPSC-based cell therapy development is donor selection. Differentiation timelines are long, costs are high, and donor variability is significant. Single-cell RNA-seq data was aggregated to donor-level bulk expression, two independent differentiation targets were engineered (pseudorank and DE score), and multiple feature representations were evaluated (PCA, pathway scores, gene-level). This project demonstrates that a small set of ~20 genes is sufficient to accurately rank donor differentiation potential and correctly identify up to 4 of the top 5 donors. The final model uses CatBoost with SHAP-based automated feature selection.
 
-**Result**: Gene-level features performed best.
+**Key tools:** Python, ScanPy, CatBoost, SHAP, Scikit-learn, Pandas
 
 ---
 
-### 4. Model Development
+## About This Portfolio
 
-#### Algorithms Tested
-- Linear Regression
-- Random Forest
-- Gradient Boosting
-- XGBoost
-- **CatBoost (best performer)**
+These projects represent the range of my data science work to date, from foundational Python development to applied machine learning on real biological datasets. Each project folder contains its own detailed README with methods, results, and code.
 
-One of the metrics used was the ability of the models to correctly rank the donors.  
-<img src="Reports/images/Figure_8_donor_ranking.png" width="700">
+I'm actively looking for data science roles at the intersection of biology and machine learning. If something here resonates with challenges you're working on, I'd love to connect.
 
-#### Key Findings
-- Predicting **Pseudorank** was more accurate than DE Score
-- Tree-based models outperformed linear models
-- Gene-based features outperformed pathway-based features
-
----
-
-### 5. Feature Selection Optimization
-
-#### Strategy
-- Used CatBoost feature importance
-- Evaluated performance across:
-  - 1–30 genes
-  - 20 train/test splits
-
-#### Results
-- Performance plateau: **~12–25 genes**
-- Strong redundancy in gene features
-- Identified a core set of highly predictive genes  
-<img src="Reports/images/Figure_10_gene_selection.png" width="900">
----
-
-### 6. Final Models
-
-Two approaches were compared:
-
-#### Manual Gene Selection
-- Fixed set of 22 genes
-- Slightly lower variance
-- Less generalizable
-
-#### Automated Gene Selection (Final Approach)
-- SHAP-based feature selection
-- Threshold: **0.0005**
-- Dynamic gene selection per dataset
-
-**Best Model:**
-- Algorithm: CatBoost Regressor  
-- Target: Pseudorank  
-- Features: ~20–22 genes (automatically selected)  
-
----
-
-## Results
-
-### Performance
-- Low mean absolute error (MAE) across splits
-- Robust performance across random train/test splits
-
-### Ranking Accuracy
-- Correctly identifies top-performing donors:
-  - Top 3 donors: up to 2 correctly identified
-  - Top 5 donors: up to 4 correctly identified
-
-### Key Insight
-> A small subset (~20 genes) is sufficient to accurately predict donor differentiation potential.
-
----
-
-## Key Takeaways
-- Gene expression at the iPSC stage contains predictive signal for differentiation success
-- Tree-based models (especially CatBoost) are highly effective
-- Feature selection is critical and benefits from automation
-- Ranking donors is a practical and achievable objective
-
----
-
-## Future Work
-
-### Model Generalization
-- Apply pipeline to other datasets (e.g., neuronal differentiation)
-- Validate across labs and experimental conditions
-
-### Potential Applications
-- Donor selection for:
-  - Neurons (neurodegenerative diseases)
-  - Immune cells (cancer therapies)
-  - Beta islet cells (diabetes)
-- Clone selection during drug development
-- Predicting in vivo performance from in vitro data
-
----
-
-## Repository Structure (example)
-```
-├── Datasets/  
-├── Notebooks/  
-│ ├── Capstone3_iPSC_EDA.ipynb  
-│ ├── Capstone3_iPSC_Modelling_bulk.ipynb  
-│ ├── Capstone3_iPSC_Modelling_bulk_condensed.ipynb  
-│ └── Capstone3_iPSC_Modelling_sc.ipynb  
-├── DE_markers/  
-├── Model/  
-├── Reports/  
-└── README.md  
-```
----
-
-## Technologies Used
-- Python
-- ScanPy
-- Pandas / NumPy
-- Scikit-learn
-- CatBoost
-- SHAP
-
----
-
-## References
-- Cuomo et al., 2020 – *Nature Communications*  
-- Chu et al., 2016 – *Genome Biology*  
-- Jerber et al., 2021 – *Nature Genetics*  
-- Liberzon et al., 2015 – MSigDB  
-
----
-
-## Acknowledgements
-This project was completed as part of a machine learning capstone and aims to demonstrate the potential of predictive modeling in accelerating cell therapy development. Thank you to Govind Malhotra for being a fantastic mentor with Springboard.
+📫 [LinkedIn](https://www.linkedin.com/in/devon-svoboda-82b03421/)
