@@ -1,4 +1,4 @@
-# Devon Svoboda — Data Science Portfolio
+# Devon Svoboda: Data Science Portfolio
 
 I'm a Data Scientist with 8+ years of industry and academic experience in cellular biology, gene and cell therapy, and translational biotech R&D. After reaching Principal Scientist level, I made a deliberate pivot into data science by completing an intensive Python-based bootcamp with Springboard and building skills in machine learning, statistical modeling, SQL, and data analysis.
 
@@ -9,7 +9,7 @@ What differentiates me as a data scientist is my ability to deeply understand th
 ## Projects
 
 ### 🧬 [Predicting iPSC Differentiation Efficiency](./Prediciting_iPSC_Diff_Efficiency)
-**Capstone 3 — Springboard Data Science Certification**
+**Capstone 3: Springboard Data Science Certification**
 
 Inspired by real challenges encountered at Shoreline Biosciences, this project builds a machine learning pipeline to predict how effectively iPSC donor lines will differentiate into definitive endoderm cells using only baseline (Day 0) RNA-seq gene expression data.
 
@@ -19,7 +19,7 @@ A core bottleneck in iPSC-based cell therapy development is donor selection. Dif
 
 ---
 ### 🏥 [Modelling Hospital Length of Stay](./Modelling_Hospital_LoS)
-**Capstone 1 — Springboard Data Science Certification**
+**Capstone 1: Springboard Data Science Certification**
 
 Predicting a patient's length of stay (LoS) at the time of admission would allow hospitals to more effectively schedule staffing, bed allocation, and resource planning. This project builds a regression model to predict LoS using vital signs and medical history from a dataset of 100,000 patients.
 
@@ -28,8 +28,25 @@ EDA revealed that most numeric features (hematocrit, creatinine, BMI, pulse, etc
 **Key tools:** Python, Scikit-learn, CatBoost, XGBoost, Pandas, Matplotlib
 
 ---
+### 🏥 [Modelling User Engagment to Identify Features of Active Users](./Mock_Interview_Data_Science_Challenges)
+**Mock Interview Challenges: Springboard Data Science Certification**
+
+As part of our final evaluation for the Data Science Certification, we were given several assignments designed to mimic data science challenges that might be posed to us during technical interviews.  Here I have included three projects to demonstrate my data visualization and modelling skills on the types of datasets found outside health care and biotech.  All three of these projects use simulated user data with the purpose of mimicking real world  businesses.
+
+#### [Website User Logins](./Mock_Interview_Data_Science_Challenges/Website_logins)
+Using timestamps from user logins, I use time series analysis to visualize and statistically analyze the patterns in website usage with the purpose of making business related recommendations to the company.
+
+#### [Rideshare User Feature Evaluation](./Mock_Interview_Data_Science_Challenges/Rideshare_Active_User_Identification)
+I used data on the rides booked from a rideshare company to identify and engineer features of active users with the purpose of making marketing recommendations to the company.
+
+#### [Relax Data Science Challenge](./Mock_Interview_Data_Science_Challenges/Relax_Data_Science_Challenge)
+In this challenge, I used two dataset describing users of an unknown business. One dataset contained metadata on the users, and the other dataset contained user logins.  In this project, I used time series analysis to define active users, then used predictive modelling with the metadata to find the features that characterized active users.  The findings were described in a report along with marketing recommendations for the client. 
+
+**Key tools:** Python, Time Series, Scikit-learn, SHAP, CatBoost, Random Forest, XGBoost, Pandas, Matplotlib
+
+---
 ### 🐴 [Horse Organizer](./Horse_Organizer)
-**Final project for CS50P — Introduction to Python (Harvard University)**
+**Final project for CS50P: Introduction to Python (Harvard University)**
 
 A command-line tool for managing a list of sale horses in the sport of eventing. Users can search available horses by budget, competition level, and age range, add new horses to the roster, or remove sold horses with automatic timestamped backups before any edits.
 
